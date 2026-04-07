@@ -58,10 +58,6 @@ Valid votes           Rejected votes
 docker compose up -d
 ```
 
-### 📸 Résultat
-
-![Docker](screenshots/docker_ps.png)
-
 ---
 
 ### 2. Création des topics Kafka
@@ -71,10 +67,17 @@ docker compose up -d
 * vote_events_rejected
 
 ```bash
+docker compose exec kafka kafka-topics --create --if-not-exists \ --topic vote_events_raw --partitions 6 --replication-factor 1 --bootstrap-server localhost:9092 
+
+docker compose exec kafka kafka-topics --create --if-not-exists \ --topic vote_events_valid --partitions 6 --replication-factor 1 --bootstrap-server localhost:9092 
+
+docker compose exec kafka kafka-topics --create --if-not-exists \ --topic vote_events_rejected --partitions 6 --replication-factor 1 --bootstrap-server localhost:9092 
+```
+### 3. Vérification des topics
+
+```bash
 docker compose exec kafka kafka-topics --list --bootstrap-server localhost:9092
 ```
-
-### 📸 Résultat
 
 ![Kafka Topics](screenshots/kafka_topics.png)
 
@@ -121,7 +124,13 @@ Agrégation des données en temps réel :
 * votes par département
 
 ```sql
-SELECT * FROM vote_count_by_city_minute EMIT CHANGES;
+SHOW STREAMS;
+>SHOW TABLES;
+>SELECT * FROM vote_count_by_candidate LIMIT 5;
+>SELECT * FROM vote_count_by_city_minute EMIT CHANGES LIMIT 5;
+>SELECT * FROM rejected_by_reason EMIT CHANGES LIMIT 5;
+>SELECT * FROM vote_count_by_dept_block EMIT CHANGES LIMIT 5;
+
 ```
 
 ### 📸 Résultat
@@ -132,29 +141,9 @@ SELECT * FROM vote_count_by_city_minute EMIT CHANGES;
 
 ## 🗄️ Cassandra
 
-Stockage des données agrégées.
-
-```sql
-SELECT * FROM votes_by_city_minute LIMIT 10;
-```
-
-### 📸 Résultat
+Stockage des données agrégées et Transfert des données depuis Kafka vers Cassandra.
 
 ![Cassandra](screenshots/cassandra.png)
-
----
-
-## 🔄 Loader Cassandra
-
-Transfert des données depuis Kafka vers Cassandra.
-
-```bash
-python enonce/src/load_to_cassandra.py
-```
-
-### 📸 Résultat
-
-![Loader](screenshots/loader.png)
 
 ---
 
