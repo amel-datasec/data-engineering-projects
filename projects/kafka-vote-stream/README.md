@@ -165,28 +165,6 @@ streamlit run enonce/src/dashboard_streamlit.py
 
 ---
 
-## 🗺️ Schéma final du pipeline
-
-```
-[Producer]
-     ↓
-[Kafka RAW]
-     ↓
-[Validator]
-  ↓        ↓
-Valid    Rejected
-  ↓        ↓
-     [ksqlDB]
-         ↓
-     [Kafka agg]
-         ↓
-   [Cassandra]
-         ↓
-   [Streamlit]
-```
-
----
-
 ## 🎯 Conclusion
 
 Ce projet met en œuvre une architecture complète de traitement de données temps réel.
