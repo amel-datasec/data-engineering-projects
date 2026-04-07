@@ -1,0 +1,15 @@
+# Environnement virtuel
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Streamlit
+.streamlit/
+
+# Variables d'environnement
+.env
+
+# Logs
+*.log
