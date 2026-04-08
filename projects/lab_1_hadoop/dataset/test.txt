@@ -1,0 +1,3 @@
+Bonjour Hadoop
+Ceci est un fichier de test
+TP HDFS
