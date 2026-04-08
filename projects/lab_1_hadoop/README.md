@@ -230,11 +230,11 @@ Exécution possible depuis le conteneur Hive Server :
 docker exec -it hive-server bash
 hive -f /path/to/query_1.hql
 hive -f /path/to/query_2.hql
-
+```
 ---
 
 ## 👨‍💻 Auteur
 
 Amel
 
-```
+
