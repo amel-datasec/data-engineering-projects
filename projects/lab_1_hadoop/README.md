@@ -82,6 +82,10 @@ Services attendus :
 - Hive Server : `localhost:10002`
 - HBase : <http://localhost:16010> ou <http://localhost:16030>
 
+## Remarques
+- Si un port est déjà utilisé, arrêter les autres conteneurs avant de lancer le lab.
+- Les conflits les plus fréquents concernent `8088` et `2181`.
+
 ## Partie 1 — Commandes HDFS
 
 ### 1. Entrer dans le conteneur NameNode
@@ -226,20 +230,11 @@ Exécution possible depuis le conteneur Hive Server :
 docker exec -it hive-server bash
 hive -f /path/to/query_1.hql
 hive -f /path/to/query_2.hql
-```
 
-## Dépôt GitHub — commandes recommandées
-Depuis le dossier `lab_1_hadoop_rendu` :
-```bash
-git init
-git add .
-git commit -m "Rendu Lab 1 Hadoop Hive HBase"
-git branch -M main
-git remote add origin <URL_DU_REPO>
-git push -u origin main
-```
+---
 
-## Remarques
-- Si un port est déjà utilisé, arrêter les autres conteneurs avant de lancer le lab.
-- Les conflits les plus fréquents concernent `8088` et `2181`.
-- Le fichier `dataset/test.txt` remplace ici un dataset complet afin de valider les commandes et les scripts demandés.
+## 👨‍💻 Auteur
+
+Amel
+
+```
